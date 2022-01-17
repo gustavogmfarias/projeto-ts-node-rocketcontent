@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { ListSpecificationsUseCase } from './listSpecificationsUseCase';
+import { ListSpecificationsUseCase } from './ListSpecificationsUseCase';
 
 class ListSpecificationsController {
   constructor(private listSpecificationUseCase: ListSpecificationsUseCase) {}
