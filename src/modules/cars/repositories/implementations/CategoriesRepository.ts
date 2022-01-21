@@ -12,6 +12,9 @@ class CategoriesRepository implements ICategoriesRepository {
   private constructor() {
     this.categories = [];
   }
+  import({}: {}) {
+    throw new Error('Method not implemented.');
+  }
 
   public static getInstance(): CategoriesRepository {
     if (!CategoriesRepository.INSTANCE) {
