@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add typeorm pg
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add tsyringe
 
 PATH: 
   C:\Python310\Scripts\;C:\Python310\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;d:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\OpenJDK\openjdk-11.0.13_8\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\gusta\AppData\Local\Microsoft\WindowsApps;C:\Users\gusta\AppData\Roaming\npm;C:\Users\gusta\AppData\Local\Yarn\bin;C:\Users\gusta\AppData\Local\GitHubDesktop\bin
@@ -36,7 +36,7 @@ npm manifest:
       "multer": "^1.4.4",
       "pg": "^8.7.3",
       "swagger-ui-express": "^4.3.0",
-      "typeorm": "^0.2.42",
+      "typeorm": "^0.2.43",
       "uuid": "^8.3.2"
     },
     "devDependencies": {
@@ -54,7 +54,9 @@ npm manifest:
     },
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true
-    }
+    },
+    "repository": "https://github.com/gustavogmfarias/projeto-ts-node-rocketcontent.git",
+    "author": "GUSTAVO GOULART DE MELLO FARIAS <53410368+gustavogmfarias@users.noreply.github.com>"
   }
 
 yarn manifest: 
@@ -1796,7 +1798,7 @@ Lockfile:
   
   pg@^8.7.3:
     version "8.7.3"
-    resolved "https://registry.npmjs.org/pg/-/pg-8.7.3.tgz"
+    resolved "https://registry.yarnpkg.com/pg/-/pg-8.7.3.tgz#8a5bdd664ca4fda4db7997ec634c6e5455b27c44"
     integrity sha512-HPmH4GH4H3AOprDJOazoIcpI49XFsHCe8xlrjHkWiapdbHK+HLtbm/GQzXYAZwmPju/kzKhjaSfMACG+8cgJcw==
     dependencies:
       buffer-writer "2.0.0"
@@ -2327,10 +2329,10 @@ Lockfile:
     resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
     integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
   
-  typeorm@^0.2.42:
-    version "0.2.42"
-    resolved "https://registry.npmjs.org/typeorm/-/typeorm-0.2.42.tgz"
-    integrity sha512-vuw1zOhwQFbjy/I3gV2oEzQZrRQ2MlkSx3sARqwOPWTF3Za0k0a1m6arMigPZ/l6TtsQsFzFQ2ozZtK6h64IxQ==
+  typeorm@^0.2.43:
+    version "0.2.43"
+    resolved "https://registry.yarnpkg.com/typeorm/-/typeorm-0.2.43.tgz#110d629ed5d0b014c735f0213f06b34abb32d298"
+    integrity sha512-j4SU8I0PsMWtF64s/9tOJmlexzfDsvXhTjSE2GXdSseUN8TYyfbCm/fJnC6lx3uHgBJL4z9bE8U/7qyC/FVmNw==
     dependencies:
       "@sqltools/formatter" "^1.2.2"
       app-root-path "^3.0.0"
