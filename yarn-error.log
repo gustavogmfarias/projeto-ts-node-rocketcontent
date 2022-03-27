@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add tsyringe
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add jsonwebtoken
 
 PATH: 
   C:\Python310\Scripts\;C:\Python310\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;d:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\OpenJDK\openjdk-11.0.13_8\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\gusta\AppData\Local\Microsoft\WindowsApps;C:\Users\gusta\AppData\Roaming\npm;C:\Users\gusta\AppData\Local\Yarn\bin;C:\Users\gusta\AppData\Local\GitHubDesktop\bin
@@ -29,6 +29,7 @@ npm manifest:
     "dependencies": {
       "@types/multer": "^1.4.7",
       "@typescript-eslint/eslint-plugin": "^5.8.1",
+      "bcryptjs": "^2.4.3",
       "csv": "^6.0.5",
       "csv-parse": "^5.0.4",
       "eslint-config-airbnb-base": "^15.0.0",
@@ -36,10 +37,12 @@ npm manifest:
       "multer": "^1.4.4",
       "pg": "^8.7.3",
       "swagger-ui-express": "^4.3.0",
+      "tsyringe": "^4.6.0",
       "typeorm": "^0.2.43",
       "uuid": "^8.3.2"
     },
     "devDependencies": {
+      "@types/bcryptjs": "^2.4.2",
       "@types/express": "^4.17.13",
       "@types/swagger-ui-express": "^4.1.3",
       "@types/uuid": "^8.3.3",
@@ -121,6 +124,11 @@ Lockfile:
     version "1.2.3"
     resolved "https://registry.npmjs.org/@sqltools/formatter/-/formatter-1.2.3.tgz"
     integrity sha512-O3uyB/JbkAEMZaP3YqyHH7TMnex7tWyCbCI4EfJdOCoN6HIhqdJBWTM6aCCiWQ/5f5wxjgU735QAIpJbjDvmzg==
+  
+  "@types/bcryptjs@^2.4.2":
+    version "2.4.2"
+    resolved "https://registry.yarnpkg.com/@types/bcryptjs/-/bcryptjs-2.4.2.tgz#e3530eac9dd136bfdfb0e43df2c4c5ce1f77dfae"
+    integrity sha512-LiMQ6EOPob/4yUL66SZzu6Yh77cbzJFYll+ZfaPiPPFswtIlA/Fs1MzdKYA7JApHU49zQTbJGX3PDmCpIdDBRQ==
   
   "@types/body-parser@*":
     version "1.19.2"
@@ -406,6 +414,11 @@ Lockfile:
     version "1.5.1"
     resolved "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
     integrity sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==
+  
+  bcryptjs@^2.4.3:
+    version "2.4.3"
+    resolved "https://registry.yarnpkg.com/bcryptjs/-/bcryptjs-2.4.3.tgz#9ab5627b93e60621ff7cdac5da9733027df1d0cb"
+    integrity sha1-mrVie5PmBiH/fNrF2pczAn3x0Ms=
   
   binary-extensions@^2.0.0:
     version "2.2.0"
@@ -2287,7 +2300,7 @@ Lockfile:
       strip-bom "^3.0.0"
       strip-json-comments "^2.0.0"
   
-  tslib@^1.8.1:
+  tslib@^1.8.1, tslib@^1.9.3:
     version "1.14.1"
     resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
     integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
@@ -2303,6 +2316,13 @@ Lockfile:
     integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
     dependencies:
       tslib "^1.8.1"
+  
+  tsyringe@^4.6.0:
+    version "4.6.0"
+    resolved "https://registry.yarnpkg.com/tsyringe/-/tsyringe-4.6.0.tgz#14915d3d7f0db35e1cf7269bdbf7c440713c8d07"
+    integrity sha512-BMQAZamSfEmIQzH8WJeRu1yZGQbPSDuI9g+yEiKZFIcO46GPZuMOC2d0b52cVBdw1d++06JnDSIIZvEnogMdAw==
+    dependencies:
+      tslib "^1.9.3"
   
   type-check@^0.4.0, type-check@~0.4.0:
     version "0.4.0"
