@@ -5,6 +5,7 @@ import {
 } from '../ICategoriesRepository';
 
 import { getRepository, Repository } from 'typeorm';
+import { AppError } from '../../../../errors/AppError';
 
 class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
@@ -14,7 +15,7 @@ class CategoriesRepository implements ICategoriesRepository {
   }
 
   import({}: {}) {
-    throw new Error('Method not implemented.');
+    throw new AppError('Method not implemented.');
   }
 
   // public static getInstance(): CategoriesRepository {
