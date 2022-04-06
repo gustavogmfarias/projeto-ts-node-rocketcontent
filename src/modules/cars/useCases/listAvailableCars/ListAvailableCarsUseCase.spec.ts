@@ -1,13 +1,15 @@
 import { CarsRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarsRepositoryInMemory';
-import { ListCarsUseCase } from './ListCarsUseCase';
+import { ListAvailableCarsUseCase } from './ListAvailableCarsUseCase';
 
-let listCarsUseCase: ListCarsUseCase;
+let listAvailableCarsUseCase: ListAvailableCarsUseCase;
 let carsRepositoryInMemory: CarsRepositoryInMemory;
 
 describe('List Cars', () => {
   beforeEach(() => {
     carsRepositoryInMemory = new CarsRepositoryInMemory();
-    listCarsUseCase = new ListCarsUseCase(carsRepositoryInMemory);
+    listAvailableCarsUseCase = new ListAvailableCarsUseCase(
+      carsRepositoryInMemory,
+    );
   });
 
   it('should be able to list all available cars', async () => {
@@ -21,7 +23,7 @@ describe('List Cars', () => {
       fine_amount: 100,
     });
 
-    const cars = await listCarsUseCase.execute({});
+    const cars = await listAvailableCarsUseCase.execute({});
 
     expect(cars).toEqual([car]);
   });
@@ -37,7 +39,7 @@ describe('List Cars', () => {
       fine_amount: 100,
     });
 
-    const cars = await listCarsUseCase.execute({ name: 'Car 2' });
+    const cars = await listAvailableCarsUseCase.execute({ name: 'Car 2' });
     expect(cars).toEqual([car]);
   });
 
@@ -52,7 +54,7 @@ describe('List Cars', () => {
       fine_amount: 100,
     });
 
-    const cars = await listCarsUseCase.execute({ brand: 'volks' });
+    const cars = await listAvailableCarsUseCase.execute({ brand: 'volks' });
     expect(cars).toEqual([car]);
   });
 
@@ -67,7 +69,9 @@ describe('List Cars', () => {
       fine_amount: 100,
     });
 
-    const cars = await listCarsUseCase.execute({ category_id: 'category_id4' });
+    const cars = await listAvailableCarsUseCase.execute({
+      category_id: 'category_id4',
+    });
     expect(cars).toEqual([car]);
   });
 });
