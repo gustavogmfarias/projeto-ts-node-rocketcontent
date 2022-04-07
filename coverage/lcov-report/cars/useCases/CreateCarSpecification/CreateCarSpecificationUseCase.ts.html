@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for accounts/useCases/createUser/CreateUserUserCase.ts</title>
+    <title>Code coverage report for cars/useCases/CreateCarSpecification/CreateCarSpecificationUseCase.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">accounts/useCases/createUser</a> CreateUserUserCase.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">cars/useCases/CreateCarSpecification</a> CreateCarSpecificationUseCase.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.59% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>35/37</span>
+                <span class='fraction'>35/35</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.59% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>35/37</span>
+                <span class='fraction'>35/35</span>
             </div>
         
             
@@ -98,9 +98,7 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -109,24 +107,22 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -137,43 +133,41 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { inject, injectable } from 'tsyringe';
-import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
-import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
-import { hash } from 'bcryptjs';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
+import { ISpecificationsRepository } from '@modules/cars/repositories/ISpecificationsRepository';
 import { AppError } from '@shared/errors/AppError';
 &nbsp;
-@injectable()
-class CreateUserUserCase {
+interface IRequest {
+  car_id: string;
+  specifications_id: string[];
+}
+&nbsp;
+class CreateCarSpecificationUseCase {
   constructor(
-    @inject('UsersRepository')
-    private usersRepository: IUsersRepository,
+    private carsRepository: ICarsRepository,
+    private specificationsRepository: ISpecificationsRepository,
   ) {}
 &nbsp;
-  async execute({
-    name,
-    email,
-    password,
-    driver_license,
-  }: ICreateUserDTO): Promise&lt;void&gt; {
-    const userAlreadyExists = await this.usersRepository.findByEmail(email);
+  async execute({ car_id, specifications_id }: IRequest): Promise&lt;void&gt; {
+    const carExists = await this.carsRepository.findById(car_id);
 &nbsp;
-    if (userAlreadyExists) <span class="branch-0 cbranch-no" title="branch not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >      throw new AppError('User already exists');</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    if (!carExists) {
+      throw new AppError("Car doesn't exists");
+    }
 &nbsp;
-    const passwordHash = await hash(password, 8);
+    const specifications = await this.specificationsRepository.findByIds(
+      specifications_id,
+    );
 &nbsp;
-    await this.usersRepository.create({
-      name,
-      email,
-      password: passwordHash,
-      driver_license,
-    });
+    carExists.specifications = specifications;
+&nbsp;
+    await this.carsRepository.create(carExists);
+&nbsp;
+    console.log(carExists);
   }
 }
 &nbsp;
-export { CreateUserUserCase };
+export { CreateCarSpecificationUseCase };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
