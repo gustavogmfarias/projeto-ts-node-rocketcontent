@@ -16,7 +16,7 @@ const carsRoutes = Router();
 const createCarController = new CreateCarController();
 const listAvailableCarsController = new ListAvailableCarsController();
 const createCarSpecificationController = new CreateCarSpecificationController();
-const uploadCarImageController = new UploadCarImagesController();
+const uploadCarImagesController = new UploadCarImagesController();
 
 const uploadCarImage = multer(uploadConfig.upload('./tmp/cars'));
 
@@ -36,11 +36,11 @@ carsRoutes.post(
 );
 
 carsRoutes.post(
-  '/images',
+  '/images/:id',
   ensureAuthenticated,
   ensureAdmin,
   uploadCarImage.array('images'),
-  uploadCarImageController.handle,
+  uploadCarImagesController.handle,
 );
 
 export { carsRoutes };
