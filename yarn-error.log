@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add ts-config-paths -D
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
 
 PATH: 
-  C:\Python310\Scripts\;C:\Python310\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;d:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\OpenJDK\openjdk-11.0.13_8\bin;;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\gusta\AppData\Local\Microsoft\WindowsApps;C:\Users\gusta\AppData\Roaming\npm;C:\Users\gusta\AppData\Local\Yarn\bin;C:\Users\gusta\AppData\Local\GitHubDesktop\bin
+  C:\Users\gusta\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\gusta\AppData\Local\Programs\Python\Python310\;C:\Python310\Scripts\;C:\Python310\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\OpenJDK\openjdk-11.0.13_8\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;d:\Program Files\Git\cmd;C:\Users\gusta\AppData\Local\Microsoft\WindowsApps;C:\Users\gusta\AppData\Roaming\npm;C:\Users\gusta\AppData\Local\Yarn\bin;C:\Users\gusta\AppData\Local\GitHubDesktop\bin
 
 Yarn version: 
   1.22.15
@@ -14,17 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/ts-config-paths: Not found
-      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66140:18)
-      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140885:22)
-      at Request.emit (node:events:390:28)
-      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141857:10)
-      at Request.emit (node:events:390:28)
-      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141779:12)
-      at Object.onceWrapper (node:events:509:28)
-      at IncomingMessage.emit (node:events:402:35)
-      at endReadableNT (node:internal/streams/readable:1343:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  Error: EPERM: operation not permitted, rmdir 'D:\VScode\NODEJS\projeto2\node_modules\.bin'
 
 npm manifest: 
   {
@@ -33,9 +23,10 @@ npm manifest:
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-      "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-      "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-      "test": "jest"
+      "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
+      "typeorm": "ts-node-dev -r tsconfig-paths/register  ./node_modules/typeorm/cli",
+      "test": "jest",
+      "seed:admin": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"
     },
     "dependencies": {
       "@types/jsonwebtoken": "^8.5.8",
@@ -70,6 +61,7 @@ npm manifest:
       "jest": "^27.5.1",
       "prettier": "^2.5.1",
       "ts-node-dev": "^1.1.8",
+      "tsconfig-paths": "^3.14.1",
       "typescript": "^4.5.4"
     },
     "editor.codeActionsOnSave": {
@@ -3348,6 +3340,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.5.tgz"
     integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
   
+  minimist@^1.2.6:
+    version "1.2.6"
+    resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
+    integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
+  
   mkdirp@^0.5.4:
     version "0.5.5"
     resolved "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.5.tgz"
@@ -4367,6 +4364,16 @@ Lockfile:
       "@types/json5" "^0.0.29"
       json5 "^1.0.1"
       minimist "^1.2.0"
+      strip-bom "^3.0.0"
+  
+  tsconfig-paths@^3.14.1:
+    version "3.14.1"
+    resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz#ba0734599e8ea36c862798e920bcf163277b137a"
+    integrity sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==
+    dependencies:
+      "@types/json5" "^0.0.29"
+      json5 "^1.0.1"
+      minimist "^1.2.6"
       strip-bom "^3.0.0"
   
   tsconfig@^7.0.0:
