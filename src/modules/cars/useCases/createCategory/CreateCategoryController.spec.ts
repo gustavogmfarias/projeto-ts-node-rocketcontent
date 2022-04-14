@@ -9,8 +9,10 @@ import { v4 as uuidV4 } from 'uuid';
 let connection: Connection;
 
 describe('Create Category Controller', () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     connection = await createConnection();
+
+    await connection.runMigrations();
 
     const password = await hash('admin', 8);
     const id = uuidV4();
@@ -20,12 +22,44 @@ describe('Create Category Controller', () => {
     `);
   });
 
+  afterAll(async () => {
+    await connection.dropDatabase();
+    await connection.close();
+  });
+
   it('should be able to create a new category', async () => {
-    const response = await request(app).post('/categories').send({
-      name: '22',
-      description: 'Categoria de carro suv',
-    });
+    const responseToken = await request(app)
+      .post('/sessions')
+      .send({ email: 'admin@admin.com', password: 'admin' });
+
+    const { token } = responseToken.body;
+
+    const response = await request(app)
+      .post('/categories')
+      .send({
+        name: '22',
+        description: 'Categoria de carro suv',
+      })
+      .set({ Authorization: `Bearer ${token}` });
 
     expect(response.status).toBe(201);
+  });
+
+  it('should not be able to create a new category with the same name than other', async () => {
+    const responseToken = await request(app)
+      .post('/sessions')
+      .send({ email: 'admin@admin.com', password: 'admin' });
+
+    const { token } = responseToken.body;
+
+    const response = await request(app)
+      .post('/categories')
+      .send({
+        name: '22',
+        description: 'Categoria de carro suv',
+      })
+      .set({ Authorization: `Bearer ${token}` });
+
+    expect(response.status).toBe(400);
   });
 });
