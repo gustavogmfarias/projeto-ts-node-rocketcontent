@@ -3,7 +3,7 @@ version: "3.7"
 services:
   database: 
     image: postgres
-    container_name: database_ignite
+    container_name: database_ignite_novo
     restart: always
     ports: 
       - 5432:5432
@@ -17,7 +17,7 @@ services:
 
   app:
     build: .
-    container_name: rentx
+    container_name: rentx_novo
     restart: always
     ports: 
       - 3333:3333
