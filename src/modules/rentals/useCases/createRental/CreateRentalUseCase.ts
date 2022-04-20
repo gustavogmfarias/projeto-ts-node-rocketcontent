@@ -9,6 +9,7 @@ interface IRequest {
   user_id: string;
   car_id: string;
   expect_return_date: Date;
+  total?: number;
 }
 
 @injectable()
@@ -26,12 +27,12 @@ class CreateRentalUseCase {
     user_id,
     car_id,
     expect_return_date,
+    total,
   }: IRequest): Promise<Rental> {
     const minHour = 24;
-    const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(
-      car_id,
-    );
-    if (carUnavailable) {
+    const carUnavailable = await this.carsRepository.findById(car_id);
+
+    if (carUnavailable.available === false) {
       throw new AppError('Car is unavailable');
     }
 
@@ -58,6 +59,7 @@ class CreateRentalUseCase {
       user_id,
       car_id,
       expect_return_date,
+      total: 0,
     });
 
     await this.carsRepository.updateAvailable(car_id, false);

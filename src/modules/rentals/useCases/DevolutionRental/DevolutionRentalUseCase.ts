@@ -3,6 +3,8 @@ import { ICarsRepository } from '@modules/cars/repositories/ICarsRepository';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { AppError } from '@shared/errors/AppError';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
+import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
+
 interface IRequest {
   id: string;
   user_id: string;
@@ -19,7 +21,7 @@ class DevolutionRentalUseCase {
     private dateProvider: IDateProvider,
   ) {}
 
-  async execute({ id, user_id }: IRequest) {
+  async execute({ id, user_id }: IRequest): Promise<Rental> {
     const rental = await this.rentalsRepository.findById(id);
     const car = await this.carsRepository.findById(rental.car_id);
     const minimum_daily = 1;
@@ -35,7 +37,8 @@ class DevolutionRentalUseCase {
       this.dateProvider.dateNow(),
     );
 
-    if (daily <= minimum_daily) {
+    if (daily <= 0) {
+      daily = minimum_daily;
     }
 
     const delay = this.dateProvider.compareInDays(
@@ -43,7 +46,7 @@ class DevolutionRentalUseCase {
       rental.expect_return_date,
     );
 
-    let total;
+    let total = 0;
 
     if (delay > 0) {
       const calculate_fine = delay * car.fine_amount;
@@ -57,6 +60,8 @@ class DevolutionRentalUseCase {
 
     await this.rentalsRepository.create(rental);
     await this.carsRepository.updateAvailable(car.id, true);
+
+    return rental;
   }
 }
 

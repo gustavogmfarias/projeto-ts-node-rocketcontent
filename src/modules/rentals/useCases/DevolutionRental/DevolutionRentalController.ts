@@ -7,7 +7,7 @@ class DevolutionRentalController {
     const devolutionRentalUseCase = container.resolve(DevolutionRentalUseCase);
 
     const { id: user_id } = request.user;
-    const { id } = request.params;
+    const { id } = request.params; //id do devolution
     const rental = await devolutionRentalUseCase.execute({ id, user_id });
 
     return response.status(200).json(rental);

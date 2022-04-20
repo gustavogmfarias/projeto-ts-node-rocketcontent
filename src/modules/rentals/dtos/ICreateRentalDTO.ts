@@ -4,7 +4,7 @@ interface ICreateRentalDTO {
   car_id: string;
   expect_return_date: Date;
   end_date?: Date;
-  total: number;
+  total?: number;
 }
 
 export { ICreateRentalDTO };
