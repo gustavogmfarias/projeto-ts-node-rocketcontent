@@ -26,9 +26,19 @@ describe('CreateRental', () => {
   });
 
   it('should be able to create a new Rental', async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: 'test',
+      description: 'Car Test',
+      daily_rate: 100,
+      license_plate: 'test',
+      fine_amount: 40,
+      category_id: '1234',
+      brand: 'brand',
+    });
+
     const rental = await createRentalUseCase.execute({
       user_id: '12345',
-      car_id: '1212',
+      car_id: car.id,
       expect_return_date: dayAdd24Hours,
     });
 
@@ -37,30 +47,51 @@ describe('CreateRental', () => {
   });
 
   it('should not be able to create a new Rental if the user has another one', async () => {
-    const rental1 = await createRentalUseCase.execute({
+    const carbr = await carsRepositoryInMemory.create({
+      name: 'test',
+      description: 'Car Test',
+      daily_rate: 100,
+      license_plate: 'testbr',
+      fine_amount: 40,
+      category_id: '1234',
+      brand: 'brand',
+    });
+
+    await rentalsRepositoryInMemory.create({
+      car_id: carbr.id,
       user_id: '12345',
-      car_id: '1212',
       expect_return_date: dayAdd24Hours,
     });
+
     await expect(
       createRentalUseCase.execute({
+        car_id: carbr.id,
         user_id: '12345',
-        car_id: '1212',
         expect_return_date: dayAdd24Hours,
       }),
     ).rejects.toEqual(new AppError('There is a rental in progress for user!'));
   });
 
   it('should not be able to create a new Rental if the car has another one', async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: 'test',
+      description: 'Car Test',
+      daily_rate: 100,
+      license_plate: 'test',
+      fine_amount: 40,
+      category_id: '1234',
+      brand: 'brand',
+    });
+
     const rental1 = await createRentalUseCase.execute({
       user_id: '123',
-      car_id: '1212',
+      car_id: car.id,
       expect_return_date: dayAdd24Hours,
     });
     await expect(
       createRentalUseCase.execute({
         user_id: '321',
-        car_id: '1212',
+        car_id: car.id,
         expect_return_date: dayAdd24Hours,
       }),
     ).rejects.toEqual(new AppError('Car is unavailable'));
