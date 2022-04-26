@@ -41,7 +41,7 @@ class CreateRentalUseCase {
     );
 
     if (userOpenRental) {
-      throw new AppError('There is a rental in progress for user! ');
+      throw new AppError('There is a rental in progress for user!');
     }
 
     const dateNow = this.dateProvider.dateNow();

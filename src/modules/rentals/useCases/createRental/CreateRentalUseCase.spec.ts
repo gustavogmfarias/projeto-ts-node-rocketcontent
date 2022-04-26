@@ -98,10 +98,20 @@ describe('CreateRental', () => {
   });
 
   it('should not be able to create a new Rental with invalid Return Time', async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: 'test',
+      description: 'Car Test',
+      daily_rate: 100,
+      license_plate: 'test',
+      fine_amount: 40,
+      category_id: '1234',
+      brand: 'brand',
+    });
+
     await expect(
       createRentalUseCase.execute({
         user_id: '123',
-        car_id: '1212',
+        car_id: car.id,
         expect_return_date: dayjs().toDate(),
       }),
     ).rejects.toEqual(new AppError('Invalid Return Time'));
