@@ -32,7 +32,7 @@ describe('List Categories Controller', () => {
       .post('/sessions')
       .send({ email: 'admin@admin.com', password: 'admin' });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     await request(app)
       .post('/categories')
@@ -40,7 +40,7 @@ describe('List Categories Controller', () => {
         name: '30',
         description: 'Categoria de carro suv',
       })
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refresh_token}` });
 
     const response = await request(app).get('/categories');
     console.log(response.body);

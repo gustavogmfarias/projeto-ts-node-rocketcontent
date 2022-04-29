@@ -32,7 +32,7 @@ describe('Create Category Controller', () => {
       .post('/sessions')
       .send({ email: 'admin@admin.com', password: 'admin' });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     const response = await request(app)
       .post('/categories')
@@ -40,7 +40,7 @@ describe('Create Category Controller', () => {
         name: '22',
         description: 'Categoria de carro suv',
       })
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refresh_token}` });
 
     expect(response.status).toBe(201);
   });
@@ -50,7 +50,7 @@ describe('Create Category Controller', () => {
       .post('/sessions')
       .send({ email: 'admin@admin.com', password: 'admin' });
 
-    const { token } = responseToken.body;
+    const { refresh_token } = responseToken.body;
 
     const response = await request(app)
       .post('/categories')
@@ -58,7 +58,7 @@ describe('Create Category Controller', () => {
         name: '22',
         description: 'Categoria de carro suv',
       })
-      .set({ Authorization: `Bearer ${token}` });
+      .set({ Authorization: `Bearer ${refresh_token}` });
 
     expect(response.status).toBe(400);
   });
