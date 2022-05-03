@@ -9,7 +9,7 @@ class S3StorageProvider implements IStorageProvider {
   private client: S3;
 
   constructor() {
-    this.client = new S3({ region: process.env.aws_bucket_region });
+    this.client = new S3({ region: process.env.AWS_BUCKET_REGION });
   }
 
   async save(file: string, folder: string): Promise<string> {
@@ -17,7 +17,7 @@ class S3StorageProvider implements IStorageProvider {
 
     const fileContent = await fs.promises.readFile(originalName);
 
-    const ContentType = mime.lookup(originalName);
+    const ContentType = mime.getType(originalName);
 
     await this.client
       .putObject({
