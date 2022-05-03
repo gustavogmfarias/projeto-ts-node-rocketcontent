@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import { S3 } from 'aws-sdk';
 import fs from 'fs';
 import upload from '@config/upload';
-import mime from 'serve-static/node_modules/@types/mime';
+import mime from 'mime';
 
 class S3StorageProvider implements IStorageProvider {
   private client: S3;
@@ -30,6 +30,8 @@ class S3StorageProvider implements IStorageProvider {
       .promise();
 
     await fs.promises.unlink(originalName);
+
+    return file;
   }
   async delete(file: string, folder: string): Promise<void> {
     await this.client
