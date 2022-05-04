@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add mime@
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add class-transformer
 
 PATH: 
   C:\Users\gusta\AppData\Local\Programs\Python\Python310\Scripts\;C:\Users\gusta\AppData\Local\Programs\Python\Python310\;C:\Python310\Scripts\;C:\Python310\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\OpenJDK\openjdk-11.0.13_8\bin;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;d:\Program Files\Git\cmd;C:\Users\gusta\AppData\Local\Microsoft\WindowsApps;C:\Users\gusta\AppData\Roaming\npm;C:\Users\gusta\AppData\Local\Yarn\bin;C:\Users\gusta\AppData\Local\GitHubDesktop\bin
@@ -37,6 +37,7 @@ npm manifest:
       "csv": "^6.0.5",
       "csv-parse": "^5.0.4",
       "dayjs": "^1.11.0",
+      "dotenv": "^16.0.0",
       "eslint-config-airbnb-base": "^15.0.0",
       "express": "^4.17.2",
       "express-async-errors": "^3.1.1",
@@ -66,7 +67,7 @@ npm manifest:
       "eslint-plugin-import": "^2.25.2",
       "eslint-plugin-prettier": "^4.0.0",
       "jest": "^27.5.1",
-      "mime": "^3.0.0",
+      "mime": "2",
       "nodemailer": "^6.7.3",
       "prettier": "^2.5.1",
       "supertest": "^6.2.2",
@@ -1739,6 +1740,11 @@ Lockfile:
     integrity sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==
     dependencies:
       webidl-conversions "^5.0.0"
+  
+  dotenv@^16.0.0:
+    version "16.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.0.tgz#c619001253be89ebb638d027b609c75c26e47411"
+    integrity sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==
   
   dotenv@^8.2.0:
     version "8.6.0"
@@ -3480,15 +3486,10 @@ Lockfile:
     resolved "https://registry.npmjs.org/mime/-/mime-1.6.0.tgz"
     integrity sha512-x0Vn8spI+wuJ1O6S7gnbaQg8Pxh4NNHb7KSINmEWKiPE4RKOplvijn+NkmYmmRgP68mc70j2EbeTFRsrswaQeg==
   
-  mime@^2.5.0:
+  mime@2, mime@^2.5.0:
     version "2.6.0"
     resolved "https://registry.yarnpkg.com/mime/-/mime-2.6.0.tgz#a2a682a95cd4d0cb1d6257e28f83da7e35800367"
     integrity sha512-USPkMeET31rOMiarsBNIHZKLGgvKc/LrjofAnBlOttf5ajRvqiRA8QsenbcooctK6d6Ts6aqZXBA+XbkKthiQg==
-  
-  mime@^3.0.0:
-    version "3.0.0"
-    resolved "https://registry.yarnpkg.com/mime/-/mime-3.0.0.tgz#b374550dca3a0c18443b0c950a6a58f1931cf7a7"
-    integrity sha512-jSCU7/VB1loIWBZe14aEYHU/+1UMEHoaO7qxCOVJOw9GgH72VAWppxNcjU+x9a2k3GSIBXNKxXQFqRvvZ7vr3A==
   
   mimic-fn@^2.1.0:
     version "2.1.0"
