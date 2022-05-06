@@ -2,5 +2,8 @@ credentials.json
 node_modules/
 coverage/
 .env
-tmp/
+tmp/*
 rentex.pem
+!tmp/.gitkeep
+dist
+ormconfig.json
