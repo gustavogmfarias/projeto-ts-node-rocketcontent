@@ -5,5 +5,5 @@ coverage/
 tmp/*
 rentex.pem
 !tmp/.gitkeep
-dist
+dist/
 ormconfig.json
